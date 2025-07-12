@@ -1,15 +1,12 @@
-// src/components/HeroSection.jsx
 import React from "react";
+import { Link } from "react-router-dom";
 
 function HeroSection() {
   return (
-    // Changed pt-14 to pt-8 (or even pt-0 if you want it very close to the header)
-    // Adjust this value (pt-X) to control the space from the very top of the viewport.
     <section
       id="hero-section"
-      className="relative isolate px-6 pt-8 lg:px-8 text-center"
+      className="relative isolate px-6 pt-24 lg:px-8 text-center min-h-[80vh] flex items-center justify-center"
     >
-      {/* Background blur effect 1 */}
       <div
         aria-hidden="true"
         className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
@@ -23,18 +20,17 @@ function HeroSection() {
         />
       </div>
 
-      {/* Main content area */}
-      {/* The py-XX on this div also contributes to vertical space.
-          You might reduce it as well if pt-8 isn't enough reduction. */}
-      <div className="mx-auto max-w-2xl py-26 sm:py-42 lg:py-50">
-        {/* Optional: Announcement banner from reference */}
+      <div className="mx-auto max-w-2xl py-20 sm:py-24 lg:py-28">
         <div className="hidden sm:mb-8 sm:flex sm:justify-center">
           <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
             Learn more about digital watermarking technology.{" "}
-            <a href="#how-it-works" className="font-semibold text-indigo-600">
+            <Link
+              to="/about-markproof"
+              className="font-semibold text-indigo-600"
+            >
               <span aria-hidden="true" className="absolute inset-0" />
               Read more <span aria-hidden="true">&rarr;</span>
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -48,23 +44,22 @@ function HeroSection() {
             compression to see how robust your digital signature truly is.
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
-            <a
-              href="#upload-section"
+            <Link
+              to="/upload-section"
               className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Get Started Now
-            </a>
-            <a
-              href="#how-it-works"
+            </Link>
+            <Link
+              to="/how-it-works"
               className="text-sm font-semibold leading-6 text-gray-900"
             >
               How it Works <span aria-hidden="true">→</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
 
-      {/* Background blur effect 2 */}
       <div
         aria-hidden="true"
         className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
