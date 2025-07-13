@@ -54,7 +54,7 @@ function App() {
           <Route path="/" element={<HeroSection />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/about-markproof" element={<AboutMarkProof />} />
-          <Route path="/auth" element={<AuthWindow />} />{" "}
+          {/* <Route path="/auth" element={<AuthWindow />} />{" "} */}
           {/* ✅ Add this route */}
           {/* Uncomment this when UploadSection is ready
           <Route
