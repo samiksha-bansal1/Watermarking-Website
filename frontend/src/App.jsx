@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import HowItWorks from "./components/HowItWorks";
 import AboutMarkProof from "./components/AboutMarkProof";
 import AuthWindow from "./components/AuthWindow";
+import UploadSection from "./components/UploadSection";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -31,6 +32,15 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // Simple login state for demo
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Dummy login handler
+  const handleLoginClick = () => {
+    // You can show a modal or redirect to /auth here
+    setIsLoggedIn(true);
+  };
+
   const handleUploadAndEmbed = async (imageFile, text) => {
     setIsLoading(true);
     setError(null);
@@ -54,21 +64,22 @@ function App() {
           <Route path="/" element={<HeroSection />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/about-markproof" element={<AboutMarkProof />} />
-          {/* <Route path="/auth" element={<AuthWindow />} />{" "} */}
-          {/* ✅ Add this route */}
-          {/* Uncomment this when UploadSection is ready
+          <Route path="/auth" element={<AuthWindow />} />
+
+          {/* Upload Section: Pass login state and handler */}
           <Route
-  path="/upload-section"
-  element={
-    <PrivateRoute>
-      <UploadSection
-        onUploadAndEmbed={handleUploadAndEmbed}
-        isLoading={isLoading}
-        error={error}
-      />
-    </PrivateRoute>
-  }
-/>*/}
+            path="/upload-section"
+            element={
+              <UploadSection
+                onUploadAndEmbed={handleUploadAndEmbed}
+                isLoading={isLoading}
+                error={error}
+                isLoggedIn={isLoggedIn}
+                onLoginClick={handleLoginClick}
+              />
+            }
+          />
+
           <Route
             path="/contact"
             element={
@@ -101,7 +112,6 @@ function App() {
 
       <Footer />
 
-      {/* ✅ Global ToastContainer */}
       <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
