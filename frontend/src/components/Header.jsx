@@ -12,11 +12,11 @@ import { useAuth } from "../context/AuthContext";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import { toast } from "react-toastify"; // Import toast for notifications
+import { Link } from "react-router-dom";
 
 const navigation = [
-  { name: "How It Works", href: "#how-it-works", icon: LightBulbIcon },
-  { name: "Watermark Tools", href: "#upload-section", icon: BeakerIcon },
-  { name: "Contact", href: "#contact", icon: PhoneIcon },
+  { name: "How It Works", href: "/how-it-works", icon: LightBulbIcon },
+  { name: "Watermark Tools", href: "/upload-section", icon: BeakerIcon },
 ];
 
 function Header() {
@@ -101,14 +101,14 @@ function Header() {
             {/* Desktop Navigation */}
             <div className="hidden lg:flex lg:gap-x-12">
               {navigation.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.href}
                   className="text-sm font-semibold leading-6 text-gray-900 flex items-center group hover:text-blue-600 hover:underline transition-all duration-200"
                 >
                   <item.icon className="size-5 mr-2 text-gray-500 group-hover:text-blue-600 transition-colors duration-200" />
                   {item.name}
-                </a>
+                </Link>
               ))}
             </div>
 

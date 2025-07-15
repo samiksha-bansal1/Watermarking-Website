@@ -1,4 +1,6 @@
+// src/components/Footer.js
 import React from "react";
+import { Link } from "react-router-dom"; // <--- IMPORTANT: Ensure Link is imported
 
 export default function Footer() {
   return (
@@ -13,10 +15,8 @@ export default function Footer() {
             />
             <p className="text-sm">
               Protecting your digital creations with intelligent watermarking.
-            </p>{" "}
-            {/* Changed slogan */}
+            </p>
             <div className="flex space-x-6 mt-6">
-              {/* Social media icons remain the same */}
               <a href="#" className="text-gray-400 hover:text-white">
                 <span className="sr-only">Facebook</span>
                 <svg
@@ -93,33 +93,25 @@ export default function Footer() {
           <div>
             <h3 className="text-white text-base font-semibold mb-4">
               Features
-            </h3>{" "}
-            {/* Renamed from Solutions */}
+            </h3>
             <ul role="list" className="space-y-3">
               <li>
-                <a href="#" className="text-sm hover:text-white">
-                  Image Watermarking
-                </a>
+                {/* These should now work as Link components */}
+                <Link
+                  to="/upload-section?mode=embed"
+                  className="text-sm hover:text-white"
+                >
+                  Embed a watermark
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-sm hover:text-white">
-                  Video Watermarking
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm hover:text-white">
-                  PDF Watermarking
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm hover:text-white">
-                  Batch Processing
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm hover:text-white">
-                  Customizable Watermarks
-                </a>
+                {/* These should now work as Link components */}
+                <Link
+                  to="/upload-section?mode=extract"
+                  className="text-sm hover:text-white"
+                >
+                  Extract Watermark from image
+                </Link>
               </li>
             </ul>
           </div>
@@ -127,44 +119,42 @@ export default function Footer() {
             <h3 className="text-white text-base font-semibold mb-4">Support</h3>
             <ul role="list" className="space-y-3">
               <li>
-                <a href="#" className="text-sm hover:text-white">
-                  Submit ticket
-                </a>
-              </li>
-              <li>
+                {/* Consider changing these to <Link> if they navigate internally */}
                 <a href="#" className="text-sm hover:text-white">
                   Documentation
                 </a>
               </li>
               <li>
+                {/* Consider changing these to <Link> if they navigate internally */}
                 <a href="#" className="text-sm hover:text-white">
                   FAQs
                 </a>
-              </li>{" "}
-              {/* Added FAQ */}
+              </li>
             </ul>
           </div>
           <div>
             <h3 className="text-white text-base font-semibold mb-4">Company</h3>
             <ul role="list" className="space-y-3">
               <li>
+                {/* Consider changing these to <Link> if they navigate internally */}
                 <a href="#" className="text-sm hover:text-white">
                   About Us
                 </a>
-              </li>{" "}
-              {/* Changed to "About Us" */}
+              </li>
               <li>
+                {/* This is an <a> tag in your current setup, matching your description of working links */}
                 <a href="#" className="text-sm hover:text-white">
                   Blog
                 </a>
               </li>
               <li>
+                {/* This is an <a> tag in your current setup, matching your description of working links */}
                 <a href="#" className="text-sm hover:text-white">
                   Careers
                 </a>
-              </li>{" "}
-              {/* Changed "Jobs" to "Careers" */}
+              </li>
               <li>
+                {/* Consider changing these to <Link> if they navigate internally */}
                 <a href="#" className="text-sm hover:text-white">
                   Press
                 </a>
@@ -175,21 +165,23 @@ export default function Footer() {
             <h3 className="text-white text-base font-semibold mb-4">Legal</h3>
             <ul role="list" className="space-y-3">
               <li>
+                {/* Consider changing these to <Link> if they navigate internally */}
                 <a href="#" className="text-sm hover:text-white">
                   Terms of Service
                 </a>
               </li>
               <li>
+                {/* Consider changing these to <Link> if they navigate internally */}
                 <a href="#" className="text-sm hover:text-white">
                   Privacy Policy
                 </a>
               </li>
               <li>
+                {/* This is an <a> tag in your current setup, matching your description of working links */}
                 <a href="#" className="text-sm hover:text-white">
                   License Agreement
                 </a>
-              </li>{" "}
-              {/* Changed "License" to "License Agreement" */}
+              </li>
             </ul>
           </div>
         </div>
@@ -197,8 +189,7 @@ export default function Footer() {
           <p className="text-sm text-center">
             © {new Date().getFullYear()} Your Watermarking Company, Inc. All
             rights reserved.
-          </p>{" "}
-          {/* Updated company name and copyright year */}
+          </p>
         </div>
       </div>
     </footer>

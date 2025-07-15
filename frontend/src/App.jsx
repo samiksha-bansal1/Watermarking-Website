@@ -5,7 +5,6 @@ import HeroSection from "./components/HeroSection";
 import Footer from "./components/Footer";
 import HowItWorks from "./components/HowItWorks";
 import AboutMarkProof from "./components/AboutMarkProof";
-import AuthWindow from "./components/AuthWindow";
 import UploadSection from "./components/UploadSection";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -64,7 +63,7 @@ function App() {
           <Route path="/" element={<HeroSection />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/about-markproof" element={<AboutMarkProof />} />
-          <Route path="/auth" element={<AuthWindow />} />
+          {/* <Route path="/auth" element={<AuthWindow />} /> */}
 
           {/* Upload Section: Pass login state and handler */}
           <Route

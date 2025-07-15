@@ -1,3 +1,4 @@
+// src/components/HeroSection.js - REVISED ATTEMPT
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -5,7 +6,7 @@ function HeroSection() {
   return (
     <section
       id="hero-section"
-      className="relative isolate px-6 pt-24 lg:px-8 text-center min-h-[80vh] flex items-center justify-center"
+      className="relative isolate px-6 pt-24 lg:px-8 text-center min-h-[80vh] flex items-center justify-center" // Removed overflow-hidden for now
     >
       <div
         aria-hidden="true"
@@ -60,9 +61,11 @@ function HeroSection() {
         </div>
       </div>
 
+      {/* MODIFIED: Adjusted top value more carefully */}
+      {/* Increased the 'pull-up' value slightly to prevent overflow */}
       <div
         aria-hidden="true"
-        className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+        className="absolute inset-x-0 top-[calc(100%-15rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-35rem)]" // Adjusted from 13rem to 15rem, and 30rem to 35rem
       >
         <div
           style={{

@@ -1,105 +1,116 @@
-// src/components/HowItWorks.jsx
 import React from "react";
+import { Link } from "react-router-dom";
 
 function HowItWorks() {
+  const steps = [
+    {
+      number: "1",
+      title: "Upload Your Image",
+      description:
+        "Go to the 'Watermark Tools' section and use the Upload button to select a JPEG or PNG image you’d like to secure.",
+      image: "/image1.png",
+    },
+    {
+      number: "2",
+      title: "Embed Authentication Data",
+      description:
+        "Input your desired watermark data — like name, copyright ID, or timestamp. Our Gen AI invisibly embeds this data into your image.",
+      image: "/image2.png",
+    },
+    {
+      number: "3",
+      title: "Download & Verify Anytime",
+      description:
+        "Download your secured image and verify it any time using our AI detection system to confirm its authenticity and integrity.",
+      image: "/image3.png",
+    },
+  ];
+
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 mt-20">
-      {" "}
-      {/* mt-20 for spacing below fixed header */}
-      <h1 className="text-4xl font-bold text-center text-gray-900 mb-12">
-        How MarkProof Works: Your Simple Guide to Digital Authentication
-      </h1>
-      <div className="max-w-3xl mx-auto space-y-10">
-        {/* Step 1 */}
-        <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
-          <div className="flex-shrink-0 size-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
-            1
-          </div>
-          <div className="text-center md:text-left">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-              Step 1: Get Started / Upload Your Image
-            </h2>
-            <p className="text-lg text-gray-700">
-              Begin by navigating to the "Watermark Tools" section of our
-              website. Here, you'll find a straightforward "Upload Image"
-              button. Click it and select the digital image (e.g., JPEG, PNG)
-              from your device that you wish to secure with our advanced
-              watermarking.
-            </p>
-          </div>
-        </div>
+    <div className="relative isolate px-6 py-24 lg:px-8 font-inter bg-gray-50 text-gray-900 min-h-screen">
+      {/* Background blur divs from HeroSection */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+      >
+        <div
+          style={{
+            clipPath:
+              "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
+          }}
+          className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+        />
+      </div>
 
-        {/* Step 2 */}
-        <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
-          <div className="flex-shrink-0 size-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
-            2
-          </div>
-          <div className="text-center md:text-left">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-              Step 2: Embed Your Authentication Data
-            </h2>
-            <p className="text-lg text-gray-700">
-              Once your image is uploaded, you'll be prompted to enter the
-              specific information you want to embed. This can include your
-              name, organization, a unique copyright ID, creation timestamps, or
-              any custom metadata crucial for proving authenticity. Our
-              sophisticated Gen AI hybrid technology will then invisibly and
-              robustly embed this data into your image.
-            </p>
-          </div>
-        </div>
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+      >
+        <div
+          style={{
+            clipPath:
+              "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
+          }}
+          className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+        />
+      </div>
 
-        {/* Step 3 */}
-        <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
-          <div className="flex-shrink-0 size-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
-            3
-          </div>
-          <div className="text-center md:text-left">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-              Step 3: Review and Download Your MarkProof Image
-            </h2>
-            <p className="text-lg text-gray-700">
-              In just a few moments, your image will be processed. You'll see a
-              preview of your watermarked image – rest assured, the embedded
-              signature is imperceptible to the naked eye. Download this
-              "MarkProofed" image, which now carries an indelible digital
-              signature ready for distribution or archiving.
-            </p>
-          </div>
-        </div>
+      <div className="max-w-6xl mx-auto z-10 relative">
+        <h1 className="text-4xl md:text-5xl font-bold text-center text-gray-900 mb-4">
+          How MarkProof Works
+        </h1>
+        <p className="text-lg text-center text-gray-600 mb-16 max-w-2xl mx-auto">
+          Secure your content in just three easy steps with AI-powered
+          watermarking.
+        </p>
 
-        {/* Step 4 */}
-        <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
-          <div className="flex-shrink-0 size-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
-            4
-          </div>
-          <div className="text-center md:text-left">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-              Step 4: Verify Content Authenticity (As Needed)
-            </h2>
-            <p className="text-lg text-gray-700">
-              Whenever you, or anyone, needs to confirm the authenticity or
-              origin of an image, simply return to our "Watermark Tools"
-              section. Upload the image in question, and our AI-powered detector
-              will swiftly scan it for the hidden watermark. The system will
-              then display the embedded authentication data, confirming the
-              image's legitimacy and provenance. If no valid watermark is
-              detected or if tampering is found, you will be promptly notified.
-            </p>
-          </div>
+        <div className="space-y-20">
+          {steps.map((step, index) => (
+            <div
+              key={step.number}
+              className={`rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 bg-white ${
+                // Removed 'shadow-lg'
+                index % 2 === 0 ? "" : "md:flex-row-reverse"
+              }`}
+            >
+              {/* Text Content */}
+              <div className="md:w-1/2 text-center md:text-left">
+                <div className="flex items-center justify-center md:justify-start mb-3">
+                  <div className="w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center text-lg font-bold">
+                    {" "}
+                    {/* Removed 'shadow' */}
+                    {step.number}
+                  </div>
+                  <h2 className="text-2xl font-semibold text-gray-800 ml-4">
+                    {step.title}
+                  </h2>
+                </div>
+                <p className="text-gray-700 text-lg">{step.description}</p>
+              </div>
+
+              {/* Image */}
+              <div className="md:w-1/2">
+                <img
+                  src={step.image}
+                  alt={step.title}
+                  className="w-full rounded-xl" // Removed 'shadow-md'
+                />
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Call to Action */}
-        <div className="text-center mt-16">
-          <p className="text-xl text-gray-800 font-semibold mb-6">
+        <div className="text-center mt-24">
+          <p className="text-xl text-gray-800 font-medium mb-6">
             Ready to secure your digital assets?
           </p>
-          <a
-            href="/upload-section"
-            className="inline-flex items-center justify-center rounded-md bg-blue-600 px-8 py-3 text-lg font-semibold text-white shadow-lg hover:bg-blue-700 transition-colors duration-300"
+          <Link
+            to="/upload-section"
+            className="inline-block rounded-full bg-indigo-600 px-8 py-3 text-lg font-semibold text-white hover:bg-indigo-700 transition duration-300" // Removed 'shadow'
           >
             Get Started Now
-          </a>
+          </Link>
         </div>
       </div>
     </div>

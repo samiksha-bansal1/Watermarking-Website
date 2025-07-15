@@ -3,7 +3,7 @@
 module.exports = {
   content: [
     "./index.html", // Your main HTML file
-    "./src/**/*.{js,ts,jsx,tsx}", // All your React component files
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
