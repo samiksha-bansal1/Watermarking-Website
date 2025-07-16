@@ -4,7 +4,7 @@ import pywt
 import hashlib
 import uuid
 
-# --- Helper Functions ---
+
 
 def generate_watermark(num_bits=128):
     """
@@ -35,7 +35,7 @@ def apply_svd_embedding_and_reconstruct(subband_matrix, watermark_bits, alpha=0.
         else:
             S_prime[i] -= alpha * S_prime[i]
 
-    S_prime[S_prime < 0] = 0  # Ensure non-negative singular values
+    S_prime[S_prime < 0] = 0 
 
     modified_subband_matrix = U @ np.diag(S_prime) @ Vt
     return modified_subband_matrix, S, S_prime, U, Vt

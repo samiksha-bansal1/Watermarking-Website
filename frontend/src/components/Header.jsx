@@ -139,7 +139,7 @@ function Header() {
                       />
                     </svg>
                   </button>
-                  {showUserDropdown && (
+                  {/* {showUserDropdown && (
                     <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
                       <div
                         className="py-1"
@@ -150,6 +150,24 @@ function Header() {
                         <button
                           onClick={handleLogout}
                           className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-600"
+                          role="menuitem"
+                        >
+                          Log out
+                        </button>
+                      </div>
+                    </div>
+                  )} */}
+                  {showUserDropdown && (
+                    <div className="absolute right-0 mt-2 w-48 rounded-md bg-white z-10">
+                      <div
+                        className="py-1"
+                        role="menu"
+                        aria-orientation="vertical"
+                        aria-labelledby="user-menu-button"
+                      >
+                        <button
+                          onClick={handleLogout}
+                          className="block w-full text-left px-4 py-2 text-sm text-white bg-red-500 hover:bg-red-600 rounded-md transition duration-200"
                           role="menuitem"
                         >
                           Log out
@@ -185,67 +203,70 @@ function Header() {
           className="lg:hidden"
         >
           <div className="fixed inset-0 z-50" />
-          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full max-w-xs bg-white p-4 overflow-y-auto sm:ring-1 sm:ring-gray-900/10">
+            {/* Header */}
             <div className="flex items-center justify-between">
-              <a href="#" className="-m-1.5 p-1.5">
+              <a
+                href="/"
+                className="flex items-center text-blue-600 font-bold text-xl"
+              >
                 <span className="sr-only">Watermark Challenger</span>
-                <span className="text-2xl font-bold text-blue-600">
-                  Watermark Challenger
-                </span>
+                Watermark Challenger
               </a>
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="-m-2.5 rounded-md p-2.5 text-gray-700 hover:bg-gray-100"
+                className="p-2 text-gray-700 hover:bg-gray-100 rounded-md"
               >
-                <span className="sr-only">Close menu</span>
-                <XMarkIcon className="size-6" aria-hidden="true" />
+                <XMarkIcon className="h-6 w-6" aria-hidden="true" />
               </button>
             </div>
-            <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-gray-500/10">
-                <div className="space-y-2 py-6">
-                  {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 flex items-center"
+
+            {/* Navigation */}
+            <div className="mt-6 space-y-4">
+              <nav className="space-y-1">
+                {navigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-md"
+                  >
+                    <item.icon className="h-5 w-5 text-gray-500 mr-3" />
+                    {item.name}
+                  </Link>
+                ))}
+              </nav>
+
+              {/* Auth section */}
+              <div className="pt-4 border-t border-gray-200">
+                {user ? (
+                  <>
+                    <p className="px-3 text-sm text-gray-900 font-medium mb-2">
+                      Hello, {user.displayName || user.email}
+                    </p>
+                    <button
+                      onClick={handleLogout}
+                      className="w-full text-left px-3 py-2 text-sm text-white bg-red-600 rounded-md hover:bg-red-500"
                     >
-                      <item.icon className="size-6 mr-3 text-gray-500" />
-                      {item.name}
-                    </a>
-                  ))}
-                </div>
-                <div className="py-6">
-                  {user ? (
-                    <>
-                      <span className="block text-base font-semibold leading-6 text-gray-900">
-                        Hello, {user.displayName || user.email}
-                      </span>
-                      <button
-                        onClick={handleLogout}
-                        className="mt-2 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white bg-red-600 hover:bg-red-500 text-center w-full"
-                      >
-                        Log out
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <button
-                        onClick={handleSwitchToLogin} // Use handleSwitchToLogin
-                        className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 w-full text-left"
-                      >
-                        Log in
-                      </button>
-                      <button
-                        onClick={handleSwitchToSignup} // Use handleSwitchToSignup
-                        className="mt-2 -mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white bg-blue-600 hover:bg-blue-500 text-center w-full"
-                      >
-                        Sign up
-                      </button>
-                    </>
-                  )}
-                </div>
+                      Log out
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      onClick={handleSwitchToLogin}
+                      className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md"
+                    >
+                      Log in
+                    </button>
+                    <button
+                      onClick={handleSwitchToSignup}
+                      className="mt-2 w-full px-3 py-2 text-sm text-white bg-blue-600 hover:bg-blue-500 rounded-md text-center"
+                    >
+                      Sign up
+                    </button>
+                  </>
+                )}
               </div>
             </div>
           </DialogPanel>

@@ -31,7 +31,7 @@ function HowItWorks() {
       {/* Background blur divs from HeroSection */}
       <div
         aria-hidden="true"
-        className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+        className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80 pointer-events-none"
       >
         <div
           style={{
@@ -44,7 +44,7 @@ function HowItWorks() {
 
       <div
         aria-hidden="true"
-        className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+        className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)] pointer-events-none"
       >
         <div
           style={{
@@ -69,7 +69,6 @@ function HowItWorks() {
             <div
               key={step.number}
               className={`rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 bg-white ${
-                // Removed 'shadow-lg'
                 index % 2 === 0 ? "" : "md:flex-row-reverse"
               }`}
             >
@@ -77,8 +76,6 @@ function HowItWorks() {
               <div className="md:w-1/2 text-center md:text-left">
                 <div className="flex items-center justify-center md:justify-start mb-3">
                   <div className="w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center text-lg font-bold">
-                    {" "}
-                    {/* Removed 'shadow' */}
                     {step.number}
                   </div>
                   <h2 className="text-2xl font-semibold text-gray-800 ml-4">
@@ -93,7 +90,7 @@ function HowItWorks() {
                 <img
                   src={step.image}
                   alt={step.title}
-                  className="w-full rounded-xl" // Removed 'shadow-md'
+                  className="w-full rounded-xl"
                 />
               </div>
             </div>
@@ -107,7 +104,7 @@ function HowItWorks() {
           </p>
           <Link
             to="/upload-section"
-            className="inline-block rounded-full bg-indigo-600 px-8 py-3 text-lg font-semibold text-white hover:bg-indigo-700 transition duration-300" // Removed 'shadow'
+            className="inline-block rounded-full bg-indigo-600 px-8 py-3 text-lg font-semibold text-white hover:bg-indigo-700 transition duration-300"
           >
             Get Started Now
           </Link>

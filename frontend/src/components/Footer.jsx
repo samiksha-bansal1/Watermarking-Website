@@ -96,7 +96,6 @@ export default function Footer() {
             </h3>
             <ul role="list" className="space-y-3">
               <li>
-                {/* These should now work as Link components */}
                 <Link
                   to="/upload-section?mode=embed"
                   className="text-sm hover:text-white"
@@ -105,7 +104,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                {/* These should now work as Link components */}
                 <Link
                   to="/upload-section?mode=extract"
                   className="text-sm hover:text-white"
@@ -119,16 +117,14 @@ export default function Footer() {
             <h3 className="text-white text-base font-semibold mb-4">Support</h3>
             <ul role="list" className="space-y-3">
               <li>
-                {/* Consider changing these to <Link> if they navigate internally */}
-                <a href="#" className="text-sm hover:text-white">
+                <Link to="/" className="text-sm hover:text-white">
                   Documentation
-                </a>
+                </Link>
               </li>
               <li>
-                {/* Consider changing these to <Link> if they navigate internally */}
-                <a href="#" className="text-sm hover:text-white">
+                <Link to="/" className="text-sm hover:text-white">
                   FAQs
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -136,28 +132,24 @@ export default function Footer() {
             <h3 className="text-white text-base font-semibold mb-4">Company</h3>
             <ul role="list" className="space-y-3">
               <li>
-                {/* Consider changing these to <Link> if they navigate internally */}
-                <a href="#" className="text-sm hover:text-white">
+                <Link to="/" className="text-sm hover:text-white">
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                {/* This is an <a> tag in your current setup, matching your description of working links */}
-                <a href="#" className="text-sm hover:text-white">
+                <Link to="/" className="text-sm hover:text-white">
                   Blog
-                </a>
+                </Link>
               </li>
               <li>
-                {/* This is an <a> tag in your current setup, matching your description of working links */}
-                <a href="#" className="text-sm hover:text-white">
+                <Link to="/" className="text-sm hover:text-white">
                   Careers
-                </a>
+                </Link>
               </li>
               <li>
-                {/* Consider changing these to <Link> if they navigate internally */}
-                <a href="#" className="text-sm hover:text-white">
+                <Link to="/" className="text-sm hover:text-white">
                   Press
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -165,30 +157,27 @@ export default function Footer() {
             <h3 className="text-white text-base font-semibold mb-4">Legal</h3>
             <ul role="list" className="space-y-3">
               <li>
-                {/* Consider changing these to <Link> if they navigate internally */}
-                <a href="#" className="text-sm hover:text-white">
+                <Link to="/" className="text-sm hover:text-white">
                   Terms of Service
-                </a>
+                </Link>
               </li>
               <li>
-                {/* Consider changing these to <Link> if they navigate internally */}
-                <a href="#" className="text-sm hover:text-white">
+                <Link to="/" className="text-sm hover:text-white">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                {/* This is an <a> tag in your current setup, matching your description of working links */}
-                <a href="#" className="text-sm hover:text-white">
+                <Link to="/" className="text-sm hover:text-white">
                   License Agreement
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
         </div>
         <div className="mt-12 border-t border-gray-700 pt-8">
           <p className="text-sm text-center">
-            © {new Date().getFullYear()} Your Watermarking Company, Inc. All
-            rights reserved.
+            © {new Date().getFullYear()} Watermarking Company, Inc. All rights
+            reserved.
           </p>
         </div>
       </div>
