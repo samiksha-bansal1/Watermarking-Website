@@ -5,7 +5,6 @@ import hashlib
 import uuid
 
 
-
 def generate_watermark(num_bits=128):
     """
     Generates a unique binary watermark by combining SHA256 hash of a UUID.
