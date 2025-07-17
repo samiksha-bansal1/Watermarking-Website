@@ -29,6 +29,8 @@ function UploadSection({ onUploadAndEmbed, isLoading, error }) {
   const handleFileChange = (e) => {
     if (e.target.files?.[0]) {
       setFile(e.target.files[0]);
+      setSubmitted(false);
+      setTextToEmbed(""); // clear previous extracted/embedded data
     }
   };
 
@@ -51,6 +53,8 @@ function UploadSection({ onUploadAndEmbed, isLoading, error }) {
     const droppedFile = e.dataTransfer.files?.[0];
     if (droppedFile?.type.startsWith("image/")) {
       setFile(droppedFile);
+      setSubmitted(false);
+      setTextToEmbed("");
     }
   };
 
@@ -128,8 +132,10 @@ function UploadSection({ onUploadAndEmbed, isLoading, error }) {
         }
 
         const data = await response.json();
+        // console.log(data);
+
         setTimeout(() => {
-          setTextToEmbed(data.extracted_watermark || "");
+          setTextToEmbed(data.decoded_watermark || "");
           setSubmitted(true);
           setLocalLoading(false);
         }, 1000);

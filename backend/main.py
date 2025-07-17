@@ -1,5 +1,3 @@
-# main.py
-
 import io
 import json
 import numpy as np
@@ -10,14 +8,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from typing import List
-import os # Needed for path joining
-import sys # Added for sys.exit to gracefully handle critical startup errors
+import os
+import sys 
 
-# Import your embedding function (assuming it's in a file named embed.py)
 from embed import embed_image_watermark
-
-# Import components from the new extract.py file
-from extract import DLWatermarkDecoder, extract_singular_values_from_image
+from extract import DLWatermarkDecoder, extract_singular_values_from_image, extract_watermark_from_image_data
 
 app = FastAPI(
     title="Image Watermark Embedding & Extraction API",
@@ -101,18 +96,16 @@ async def embed_watermark_api(
 # Use a base directory for cleaner path management
 MODEL_DIR = "models" 
 MODEL_NAME = "watermark_cnn_decoder_wm128_alpha0015.h5"
-SCALER_NAME = "scaler_global.pkl" # Changed as per your last update
+SCALER_NAME = "scaler_wm128_alpha0015.pkl" 
 
 MODEL_PATH = os.path.join(MODEL_DIR, MODEL_NAME)
 SCALER_PATH = os.path.join(MODEL_DIR, SCALER_NAME)
 
-# Initialize the decoder globally so it's loaded only once at startup
-# *** MODIFIED LINE: Removed input_seq_len from constructor, allowing inference ***
-dl_decoder_instance = DLWatermarkDecoder(num_bits=128, wavelet_name='haar',input_seq_len=5)
+api_decoder = DLWatermarkDecoder(num_bits=128, wavelet_name='haar')
 
-# Pydantic Model for Extraction Response
 class WatermarkExtractionResponse(BaseModel):
     decoded_watermark: List[int]
+
 
 # Startup event to load the model and scaler
 @app.on_event("startup")
@@ -120,7 +113,6 @@ async def startup_event():
     """Load the DL watermark decoder model and scaler when the FastAPI application starts."""
     print("\n--- APP STARTUP: Loading DL watermark decoder model and scaler ---")
     try:
-        # Use os.path.abspath for clearer error messages if files are not found
         full_model_path = os.path.abspath(MODEL_PATH)
         full_scaler_path = os.path.abspath(SCALER_PATH)
 
@@ -129,14 +121,14 @@ async def startup_event():
         if not os.path.exists(full_scaler_path):
             raise FileNotFoundError(f"Scaler file not found at: {full_scaler_path}")
 
-        dl_decoder_instance.load_model_and_scaler(MODEL_PATH, SCALER_PATH)
-        # *** ADDED PRINT: To show the inferred input_seq_len ***
-        print(f"DLWatermarkDecoder inferred input_seq_len: {dl_decoder_instance.input_seq_len}")
+        # Call the load_components method from the DLWatermarkDecoder in extract.py
+        api_decoder.load_components(MODEL_PATH, SCALER_PATH)
+        print(f"DLWatermarkDecoder inferred input_seq_len: {api_decoder.input_seq_len}")
         print("✅ Model and scaler loaded successfully during startup.")
     except Exception as e:
         print(f"❌ CRITICAL ERROR during startup: Failed to load model or scaler: {e}")
-        # Exit the application if critical components can't be loaded
-        sys.exit(1)
+        sys.exit(1) # Exit the application if critical components can't be loaded
+
 
 
 @app.post("/extract", response_model=WatermarkExtractionResponse)
@@ -157,26 +149,15 @@ async def extract_watermark_api(
     try:
         # Read image content
         contents = await image.read()
-        nparr = np.frombuffer(contents, np.uint8)
-        img_bgr = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-
-        if img_bgr is None:
-            raise HTTPException(status_code=400, detail="Could not decode image. Ensure it's a valid image file.")
-
-        # Resize image if larger than 512x512 (consistent with training preprocessing)
-        # This resizing must match the preprocessing applied during embedding and training.
-        if img_bgr.shape[0] > 512 or img_bgr.shape[1] > 512:
-            max_dim = 512
-            scale = max_dim / max(img_bgr.shape[0], img_bgr.shape[1])
-            img_bgr = cv2.resize(img_bgr, (int(img_bgr.shape[1] * scale), int(img_bgr.shape[0] * scale)))
-
-        img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
-
+        
         # Set the wavelet type for the decoder instance before decoding if it's different
-        dl_decoder_instance.wavelet_name = wavelet_type
+        api_decoder.wavelet_name = wavelet_type
 
-        # Decode the watermark
-        decoded_watermark_bits = dl_decoder_instance.decode_watermark(img_rgb)
+        # Decode the watermark using the function from extract.py
+        decoded_watermark_bits = extract_watermark_from_image_data(contents, api_decoder)
+
+        if decoded_watermark_bits is None:
+            raise HTTPException(status_code=400, detail="Watermark extraction failed due to image processing error.")
 
         print(f"✅ Watermark extracted successfully. Decoded bits: {decoded_watermark_bits}")
         return {"decoded_watermark": decoded_watermark_bits}
