@@ -254,6 +254,7 @@ python watermark_system.py
 [![Nupurpusha](https://img.shields.io/badge/@Nupurpusha-181717?style=for-the-badge&logo=github)](https://github.com/Nupurpusha)
 [![prabhleen003](https://img.shields.io/badge/@prabhleen003-181717?style=for-the-badge&logo=github)](https://github.com/prabhleen003)
 [![samiksha-bansal1](https://img.shields.io/badge/@samiksha--bansal1-181717?style=for-the-badge&logo=github)](https://github.com/samiksha-bansal1)
+[![Snehajindl24](https://img.shields.io/badge/@Snehajindl24-181717?style=for-the-badge&logo=github)](https://github.com/Snehajindl24)
 
 </div>
 
